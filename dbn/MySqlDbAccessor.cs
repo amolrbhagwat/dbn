@@ -106,17 +106,15 @@ namespace dbn
             return columns;
         }
 
-        public override DataTable FetchAllRowsFromTable(string table)
+        private DataTable FetchRows(string query)
         {
             DataTable results = new DataTable();
-
-            string fetchResultsQuery = String.Format("select * from {0};", table);
 
             MySqlCommand command;
             MySqlDataReader reader = null;
             try
             {
-                command = new MySqlCommand(fetchResultsQuery, connection);
+                command = new MySqlCommand(query, connection);
                 reader = command.ExecuteReader();
 
                 results.Load(reader);
@@ -136,10 +134,15 @@ namespace dbn
             return results;
         }
 
+        public override DataTable FetchAllRowsFromTable(string table)
+        {
+            string fetchResultsQuery = String.Format("select * from {0};", table);
+
+            return FetchRows(fetchResultsQuery);
+        }
+
         public override DataTable FetchMatchingRowsFromTable(string table, Dictionary<string, string> criteria)
         {
-            DataTable results = new DataTable();
-
             StringBuilder whereCriteria = new StringBuilder();
             foreach (var fieldValuePair in criteria)
             {
@@ -154,28 +157,7 @@ namespace dbn
 
             Console.WriteLine("The criteria is: {0}", fetchResultsQuery);
 
-            MySqlCommand command;
-            MySqlDataReader reader = null;
-            try
-            {
-                command = new MySqlCommand(fetchResultsQuery, connection);
-                reader = command.ExecuteReader();
-
-                results.Load(reader);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-            }
-
-            return results;
+            return FetchRows(fetchResultsQuery);
         }
     }
 }
