@@ -19,6 +19,8 @@ namespace dbn
 
         public abstract List<string> GetTables();
 
-        public abstract DataTable FetchResults();
+        public abstract DataTable FetchAllRowsFromTable(string table);
+
+        public abstract DataTable FetchMatchingRowsFromTable(string table, Dictionary<string, string> criteria);
     }
 }
