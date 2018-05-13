@@ -38,57 +38,21 @@ namespace dbn
                 connection.Close();
             }
         }
-      
-        public override List<string> GetTables()
-        {
-            List<string> tables = new List<string>();
 
-            string fetchTablesQuery = "show tables;";
+        private List<string> GetList(string query)
+        {
+            List<string> resultsList = new List<string>();
 
             MySqlCommand command;
             MySqlDataReader reader = null;
             try
             {
-                command = new MySqlCommand(fetchTablesQuery, connection);
+                command = new MySqlCommand(query, connection);
                 reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    tables.Add(reader[0].ToString());
-                }
-            }
-            catch(Exception e)
-            {
-
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-            }
-
-            return tables;
-        }
-
-        public override List<string> GetColumns(string table = "productlines")
-        {
-            List<string> columns = new List<string>();
-
-            string fetchColumnsQuery = String.Format("select column_name from information_schema.columns where table_name = '{0}';",
-                table);
-
-            MySqlCommand command;
-            MySqlDataReader reader = null;
-            try
-            {
-                command = new MySqlCommand(fetchColumnsQuery, connection);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    columns.Add(reader[0].ToString());
+                    resultsList.Add(reader[0].ToString());
                 }
             }
             catch (Exception e)
@@ -103,7 +67,22 @@ namespace dbn
                 }
             }
 
-            return columns;
+            return resultsList;
+        }
+
+        public override List<string> GetTables()
+        {
+            string fetchTablesQuery = "show tables;";
+
+            return GetList(fetchTablesQuery);
+        }
+
+        public override List<string> GetColumns(string table = "productlines")
+        {
+            string fetchColumnsQuery = String.Format("select column_name from information_schema.columns where table_name = '{0}';",
+                table);
+
+            return GetList(fetchColumnsQuery);
         }
 
         private DataTable FetchRows(string query)
