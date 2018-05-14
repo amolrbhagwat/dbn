@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.RowSpan="2"></ListBox>
+            <ListBox Grid.Column="1" Grid.RowSpan="2"></ListBox>
+            <ListBox Grid.Column="2" Grid.RowSpan="2"></ListBox>
+
+            <Button Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom">Fetch</Button>
+
+            <DataGrid Name="resultsGrid" Grid.Row="2" Grid.ColumnSpan="3" AlternatingRowBackground="LightBlue" AlternationCount="2" />
+        </Grid>
     </Grid>
 </Window>
