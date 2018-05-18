@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="DbAccessor.cs" />
     <Compile Include="DbConnectionInfo.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

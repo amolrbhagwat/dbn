@@ -23,6 +23,15 @@ namespace dbn
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainViewModel();
+        }
+
+        private void ConnectionsListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListBoxItem listBoxItem = (ListBoxItem)sender;
+            DbConnectionInfo dbConnectionInfo = listBoxItem.DataContext as DbConnectionInfo;
+
+            ((MainViewModel)this.DataContext).ConnectToDb(dbConnectionInfo);
         }
     }
 }

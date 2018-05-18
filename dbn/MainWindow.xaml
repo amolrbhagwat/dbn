@@ -19,8 +19,14 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <ListBox Grid.RowSpan="2"></ListBox>
-            <ListBox Grid.Column="1" Grid.RowSpan="2"></ListBox>
+            <ListBox Name="ConnectionsListBox" Grid.RowSpan="2" ItemsSource="{Binding Connections}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="ConnectionsListBoxItem_MouseDoubleClick" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ListBox Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Tables}"></ListBox>
             <ListBox Grid.Column="2" Grid.RowSpan="2"></ListBox>
 
             <Button Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom">Fetch</Button>
