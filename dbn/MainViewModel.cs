@@ -29,6 +29,20 @@ namespace dbn
             }
         }
 
+        private ObservableCollection<string> columns;
+        public ObservableCollection<string> Columns
+        {
+            get
+            {
+                return columns;
+            }
+            private set
+            {
+                columns = value;
+                RaisePropertyChanged("Columns");
+            }
+        }
+
         public MainViewModel()
         {
             Connections = SettingsReader.readSettings();
@@ -41,6 +55,14 @@ namespace dbn
                 dbConnectionInfo.Username, dbConnectionInfo.Password);
 
             Tables = new ObservableCollection<string>(dbAccessor.GetTables() as List<string>);
+        }
+
+        public void SelectTable(string table)
+        {
+            if (!String.IsNullOrEmpty(table))
+            {
+                Columns = new ObservableCollection<string>(dbAccessor.GetColumns(table) as List<string>);
+            }
         }
 
         protected void RaisePropertyChanged(string name)

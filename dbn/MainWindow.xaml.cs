@@ -33,5 +33,12 @@ namespace dbn
 
             ((MainViewModel)this.DataContext).ConnectToDb(dbConnectionInfo);
         }
+
+        private void TablesListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem listBoxItem = (ListBoxItem)sender;
+
+            ((MainViewModel)this.DataContext).SelectTable(listBoxItem.DataContext.ToString());
+        }
     }
 }
