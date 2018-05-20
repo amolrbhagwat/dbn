@@ -33,11 +33,20 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-            <ListBox Name="ColumnsListBox" Grid.Column="2" Grid.RowSpan="2" ItemsSource="{Binding Columns}">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                    </Style>
-                </ListBox.ItemContainerStyle>
+            <ListBox Name="ColumnsListBox" Grid.Column="2" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Columns}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Name="ColumnName" Grid.Column="0" Text="{Binding}"/>
+                            <TextBox Name="ColumnValue" Grid.Column="1" HorizontalAlignment="Stretch"></TextBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
 
             <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom" Click="FetchButton_Clicked"> Fetch </Button>

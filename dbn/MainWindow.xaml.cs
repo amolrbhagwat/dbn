@@ -24,6 +24,9 @@ namespace dbn
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
+
+            ((MainViewModel)this.DataContext).ConnectToDb(((MainViewModel)this.DataContext).Connections[0]);
+            ((MainViewModel)this.DataContext).SelectTable("offices");
         }
 
         private void ConnectionsListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -44,6 +47,8 @@ namespace dbn
         private void FetchButton_Clicked(object sender, RoutedEventArgs e)
         {
             ((MainViewModel)this.DataContext).SelectRows();
+                Console.WriteLine("{0} = {1}", keyTextBlock.Text,valueTextBox.Text);
+                    Console.WriteLine("Adding this");
         }
     }
 }

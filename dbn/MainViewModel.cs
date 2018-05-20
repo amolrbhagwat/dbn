@@ -92,6 +92,14 @@ namespace dbn
             }
         }
 
+        public void SelectRowsMatching(Dictionary<string, string> criteria)
+        {
+            if (!String.IsNullOrEmpty(currentTable))
+            {
+                Results = dbAccessor.FetchMatchingRowsFromTable(currentTable, criteria);
+            }
+        }
+
         protected void RaisePropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
