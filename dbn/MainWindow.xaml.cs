@@ -40,5 +40,10 @@ namespace dbn
 
             ((MainViewModel)this.DataContext).SelectTable(listBoxItem.DataContext.ToString());
         }
+
+        private void FetchButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            ((MainViewModel)this.DataContext).SelectRows();
+        }
     }
 }

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace dbn
 {
@@ -29,6 +31,7 @@ namespace dbn
             }
         }
 
+        private string currentTable;
         private ObservableCollection<string> columns;
         public ObservableCollection<string> Columns
         {
@@ -40,6 +43,20 @@ namespace dbn
             {
                 columns = value;
                 RaisePropertyChanged("Columns");
+            }
+        }
+
+        private DataTable results;
+        public DataTable Results
+        {
+            get
+            {
+                return results;
+            }
+            private set
+            {
+                results = value;
+                RaisePropertyChanged("Results");
             }
         }
 
@@ -62,6 +79,16 @@ namespace dbn
             if (!String.IsNullOrEmpty(table))
             {
                 Columns = new ObservableCollection<string>(dbAccessor.GetColumns(table) as List<string>);
+                currentTable = table;
+            }
+        }
+
+        public void SelectRows()
+        {
+            if (!String.IsNullOrEmpty(currentTable))
+            {
+                Console.WriteLine(currentTable);
+                Results = dbAccessor.FetchAllRowsFromTable(currentTable);
             }
         }
 

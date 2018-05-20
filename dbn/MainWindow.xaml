@@ -40,9 +40,9 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
 
-            <Button Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom">Fetch</Button>
+            <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom" Click="FetchButton_Clicked"> Fetch </Button>
 
-            <DataGrid Name="resultsGrid" Grid.Row="2" Grid.ColumnSpan="3" AlternatingRowBackground="LightBlue" AlternationCount="2" />
+            <DataGrid Name="resultsGrid" Grid.Row="2" Grid.ColumnSpan="3" AlternatingRowBackground="LightBlue" AlternationCount="2" ItemsSource="{Binding Results}" />
         </Grid>
     </Grid>
 </Window>
