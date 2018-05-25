@@ -51,7 +51,21 @@
 
             <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom" Click="FetchButton_Clicked"> Fetch </Button>
 
-            <DataGrid Name="resultsGrid" Grid.Row="2" Grid.ColumnSpan="3" AlternatingRowBackground="LightBlue" AlternationCount="2" ItemsSource="{Binding Results}" />
+            <DataGrid Name="ResultsDataGrid" Grid.Row="2" Grid.ColumnSpan="3"
+                      AlternatingRowBackground="LightBlue" AlternationCount="2"
+                      IsReadOnly="True"
+                      SelectionUnit="Cell"
+                      SelectionMode="Single"
+                      SelectedCellsChanged="ResultsDataGrid_SelectedCellsChanged"
+                      
+                      ItemsSource="{Binding Results}">
+                <DataGrid.ContextMenu>
+                    <ContextMenu x:Name="CtxMenu">
+                        <MenuItem Click="ContextMenuItem_Click"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
         </Grid>
     </Grid>
 </Window>

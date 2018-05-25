@@ -60,6 +60,20 @@ namespace dbn
             }
         }
 
+        private Dictionary<string, List<string>> columnTableMapping;
+        public Dictionary<string, List<string>> ColumnTableMapping
+        {
+            get
+            {
+                return columnTableMapping;
+            }
+            private set
+            {
+                columnTableMapping = value;
+                RaisePropertyChanged("ColumnTableMapping");
+            }
+        }
+
         public MainViewModel()
         {
             Connections = SettingsReader.readSettings();
@@ -72,6 +86,24 @@ namespace dbn
                 dbConnectionInfo.Username, dbConnectionInfo.Password);
 
             Tables = new ObservableCollection<string>(dbAccessor.GetTables() as List<string>);
+            GenerateColumnTableMapping();
+        }
+
+        private void GenerateColumnTableMapping()
+        {
+            ColumnTableMapping = new Dictionary<string, List<string>>();
+
+            foreach(string table in Tables)
+            {
+                foreach(string column in dbAccessor.GetColumns(table))
+                {
+                    if (!ColumnTableMapping.ContainsKey(column))
+                    {
+                        ColumnTableMapping.Add(column, new List<string>());
+                    }
+                    ColumnTableMapping[column].Add(table);
+                }
+            }
         }
 
         public void SelectTable(string table)
@@ -87,7 +119,6 @@ namespace dbn
         {
             if (!String.IsNullOrEmpty(currentTable))
             {
-                Console.WriteLine(currentTable);
                 Results = dbAccessor.FetchAllRowsFromTable(currentTable);
             }
         }
