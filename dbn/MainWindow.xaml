@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dbn"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Database Navigator" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Name="ConnectionsListBox" Grid.RowSpan="2" ItemsSource="{Binding Connections}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="ConnectionsListBoxItem_MouseDoubleClick" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ListBox Name="TablesListBox" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Tables}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="Selected" Handler="TablesListBoxItem_Selected" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <ListBox Name="ColumnsListBox" Grid.Column="2" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Columns}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Name="ColumnName" Grid.Column="0" Text="{Binding}"/>
+                            <TextBox Name="ColumnValue" Grid.Column="1" HorizontalAlignment="Stretch"></TextBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom" Click="FetchButton_Clicked"> Fetch </Button>
+
+            <DataGrid Name="ResultsDataGrid" Grid.Row="2" Grid.ColumnSpan="3"
+                      AlternatingRowBackground="LightBlue" AlternationCount="2"
+                      IsReadOnly="True"
+                      SelectionUnit="Cell"
+                      SelectionMode="Single"
+                      SelectedCellsChanged="ResultsDataGrid_SelectedCellsChanged"
+                      
+                      ItemsSource="{Binding Results}">
+                <DataGrid.ContextMenu>
+                    <ContextMenu x:Name="CtxMenu">
+                        <MenuItem Click="ContextMenuItem_Click"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
+        </Grid>
     </Grid>
 </Window>
