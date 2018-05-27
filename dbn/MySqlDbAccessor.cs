@@ -22,10 +22,15 @@ namespace dbn
 
         public override bool Connect(string server, string port, string database, string user, string password)
         {
-            string connectionString = String.Format("Server={0};Database={1};Uid={2};Pwd={3};Port={4}",
-                server, database, user, password, port);
+            MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
+            connectionStringBuilder.Server = server;
+            connectionStringBuilder.Port = UInt16.Parse(port);
+            connectionStringBuilder.Database = database;
+            connectionStringBuilder.UserID = user;
+            connectionStringBuilder.Password = password;
+            connectionStringBuilder.SslMode = MySqlSslMode.None;
 
-            connection = new MySqlConnection(connectionString);
+            connection = new MySqlConnection(connectionStringBuilder.ToString());
             connection.Open();
 
             return Connected;
