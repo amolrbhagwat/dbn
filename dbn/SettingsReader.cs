@@ -24,12 +24,14 @@ namespace dbn
                 IniParser.Model.KeyDataCollection keyDataCollection = section.Keys;
 
                 string hostname = keyDataCollection["hostname"];
+                string port     = keyDataCollection["port"];
                 string database = keyDataCollection["database"];
                 string username = keyDataCollection["username"];
                 string password = keyDataCollection["password"];
 
                 thisConnection.ConnectionName = section.SectionName;
                 thisConnection.Hostname = hostname;
+                thisConnection.Port     = port;
                 thisConnection.Database = database;
                 thisConnection.Username = username;
                 thisConnection.Password = password;

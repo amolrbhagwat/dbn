@@ -11,7 +11,7 @@ namespace dbn
     {
         Boolean Connected { get; }
 
-        public abstract Boolean Connect(string server, string database, string user, string password);
+        public abstract Boolean Connect(string server, string port, string database, string user, string password);
 
         public abstract void Disconnect();
 

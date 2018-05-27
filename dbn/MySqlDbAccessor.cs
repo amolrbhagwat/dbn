@@ -20,10 +20,10 @@ namespace dbn
             }
         }
 
-        public override bool Connect(string server, string database, string user, string password)
+        public override bool Connect(string server, string port, string database, string user, string password)
         {
-            string connectionString = string.Format("Server={0};Database={1};Uid={2};Pwd={3};",
-                server, database, user, password);
+            string connectionString = String.Format("Server={0};Database={1};Uid={2};Pwd={3};Port={4}",
+                server, database, user, password, port);
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
