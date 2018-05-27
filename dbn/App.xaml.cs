@@ -13,5 +13,15 @@ namespace dbn
     /// </summary>
     public partial class App : Application
     {
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            string displayMessage = "An unhandled exception just occurred: " +
+                                    e.Exception.Message +
+                                    "\n" +
+                                    e.Exception.StackTrace;
+
+            MessageBox.Show(displayMessage, "An Exception occurred");
+            e.Handled = true;
+        }
     }
 }
