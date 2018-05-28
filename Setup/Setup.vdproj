@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7EB6D691C96F4AA3B2E5CF6FD8B248A0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9E6A2AED09B6D4D9BE73D48D3C3EA666"
         "OwnerKey" = "8:_53E280880EFA4F3E948DF12A937BFFD6"
         "MsmSig" = "8:_UNDEFINED"
@@ -222,6 +228,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EB6D691C96F4AA3B2E5CF6FD8B248A0"
+            {
+            "SourcePath" = "8:..\\dbn\\dbn.ini"
+            "TargetName" = "8:dbn.ini"
+            "Tag" = "8:"
+            "Folder" = "8:_E246ED55DB93479286FF3E3CF2D1E17A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E6A2AED09B6D4D9BE73D48D3C3EA666"
             {
             "AssemblyRegister" = "3:1"
@@ -350,6 +376,17 @@
             "Property" = "8:PersonalFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_E246ED55DB93479286FF3E3CF2D1E17A"
+                    {
+                    "Name" = "8:dbn"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_CF7E769BC9FB4CEB8AF5E4A745DF2CB1"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_1EB95C92E3324F56A54A5C715551949C"
@@ -398,12 +435,24 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C8C1E4B6031648D98501B09828026A3A"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
+                "Folders"
+                {
+                }
+            }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_EAA675F3C09F4956AA90D75226A54C2B"
+            {
+            "DefaultLocation" = "8:[LocalApplicationData]"
+            "Name" = "8:Config"
+            "AlwaysCreate" = "11:TRUE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:NEWPROPERTY1"
                 "Folders"
                 {
                 }
@@ -425,7 +474,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:dbn"
         "ProductCode" = "8:{804FEA07-2FCB-4DA3-B94E-A4E8F3E944F3}"
-        "PackageCode" = "8:{7D7CD6C8-FA02-40FE-B0CE-717359ED104E}"
+        "PackageCode" = "8:{C2CAA3B7-893A-437A-9B10-2A9B58C6B343}"
         "UpgradeCode" = "8:{7DB89A1F-B38A-46D5-9E7B-8D21F22798F5}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
