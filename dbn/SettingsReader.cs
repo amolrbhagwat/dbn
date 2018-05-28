@@ -9,8 +9,16 @@ namespace dbn
 {
     class SettingsReader
     {
-        public static List<DbConnectionInfo> readSettings(String filename = "D:\\data\\dbn.ini")
+        private static string defaultConnectionsFile =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString() + "\\dbn\\dbn.ini";
+
+        public static List<DbConnectionInfo> readSettings(String filename = "")
         {
+            if (String.IsNullOrEmpty(filename))
+            {
+                filename = defaultConnectionsFile;
+            }
+
             List<DbConnectionInfo> dbConnections = new List<DbConnectionInfo>();
 
             var parser = new FileIniDataParser();
