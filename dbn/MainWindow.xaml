@@ -6,66 +6,97 @@
         xmlns:local="clr-namespace:dbn"
         mc:Ignorable="d"
         Title="Database Navigator" Height="450" Width="800">
+    
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <ListBox Name="ConnectionsListBox" Grid.RowSpan="2" ItemsSource="{Binding Connections}">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <EventSetter Event="MouseDoubleClick" Handler="ConnectionsListBoxItem_MouseDoubleClick" />
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
-            <ListBox Name="TablesListBox" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Tables}">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <EventSetter Event="Selected" Handler="TablesListBoxItem_Selected" />
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
-            <ListBox Name="ColumnsListBox" Grid.Column="2" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Columns}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Name="ColumnName" Grid.Column="0" Text="{Binding}"/>
-                            <TextBox Name="ColumnValue" Grid.Column="1" HorizontalAlignment="Stretch"></TextBox>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <GroupBox Grid.RowSpan="2" Margin="10,5,5,10" >
+            <GroupBox.Header>
+                Database Connections
+            </GroupBox.Header>
+            <DockPanel>
+                <ListBox Name="ConnectionsListBox" Grid.RowSpan="2" BorderThickness="0" ItemsSource="{Binding Connections}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="ConnectionsListBoxItem_MouseDoubleClick" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
 
-            <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" Height="auto" VerticalAlignment="Bottom" Click="FetchButton_Clicked"> Fetch </Button>
+        <GroupBox Grid.Column="1" Grid.RowSpan="2" Margin="5,5,5,10" >
+            <GroupBox.Header>
+                Tables
+            </GroupBox.Header>
+            <DockPanel>
+                <ListBox Name="TablesListBox" Grid.Column="1" Grid.RowSpan="2" Height="Auto" BorderThickness="0" ItemsSource="{Binding Tables}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="Selected" Handler="TablesListBoxItem_Selected" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
 
-            <DataGrid Name="ResultsDataGrid" Grid.Row="2" Grid.ColumnSpan="3"
-                      AlternatingRowBackground="LightBlue" AlternationCount="2"
-                      IsReadOnly="True"
-                      SelectionUnit="Cell"
-                      SelectionMode="Single"
-                      SelectedCellsChanged="ResultsDataGrid_SelectedCellsChanged"
+        <DockPanel Grid.Column="2" Grid.RowSpan="2">
+            <Button Name="FetchButton" Grid.Column="2" Grid.Row="1" DockPanel.Dock="Bottom" Margin="5,0,10,10" Height="auto" Click="FetchButton_Clicked">Fetch</Button>
+            <GroupBox DockPanel.Dock="Top" Margin="5,5,10,10">
+                <GroupBox.Header>
+                    Fields
+                </GroupBox.Header>
+                <DockPanel>
+                    <ListBox Name="ColumnsListBox" HorizontalContentAlignment="Stretch" BorderThickness="0" ItemsSource="{Binding Columns}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Name="ColumnName" Grid.Column="0" Text="{Binding}"/>
+                                    <TextBox Name="ColumnValue" Grid.Column="1" HorizontalAlignment="Stretch"></TextBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </GroupBox>
+        </DockPanel>
+
+        <GroupBox Grid.Row="2" Grid.ColumnSpan="3" Margin="10,0,10,5">
+            <GroupBox.Header>
+                Results
+            </GroupBox.Header>
+            <DataGrid Name="ResultsDataGrid"
+                    BorderThickness="0"
+                    RowHeaderWidth="0"
+                    AlternatingRowBackground="LightBlue" AlternationCount="2"
+                    IsReadOnly="True"
+                    SelectionUnit="Cell"
+                    SelectionMode="Single"
+                    SelectedCellsChanged="ResultsDataGrid_SelectedCellsChanged"
                       
-                      ItemsSource="{Binding Results}">
+                    ItemsSource="{Binding Results}">
+
                 <DataGrid.ContextMenu>
                     <ContextMenu x:Name="CtxMenu">
                         <MenuItem Click="ContextMenuItem_Click"></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
-
-        </Grid>
+        </GroupBox>
     </Grid>
 </Window>
