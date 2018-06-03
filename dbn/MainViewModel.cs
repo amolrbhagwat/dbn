@@ -75,6 +75,8 @@ namespace dbn
 
             Tables = new ObservableCollection<string>(dbAccessor.GetTables() as List<string>);
             GenerateColumnTableMapping();
+
+            Columns?.Clear();
         }
 
         private void GenerateColumnTableMapping()
