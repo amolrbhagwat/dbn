@@ -61,18 +61,6 @@ namespace dbn
         }
 
         private Dictionary<string, List<string>> columnTableMapping;
-        public Dictionary<string, List<string>> ColumnTableMapping
-        {
-            get
-            {
-                return columnTableMapping;
-            }
-            private set
-            {
-                columnTableMapping = value;
-                RaisePropertyChanged("ColumnTableMapping");
-            }
-        }
 
         public MainViewModel()
         {
@@ -91,17 +79,17 @@ namespace dbn
 
         private void GenerateColumnTableMapping()
         {
-            ColumnTableMapping = new Dictionary<string, List<string>>();
+            columnTableMapping = new Dictionary<string, List<string>>();
 
             foreach(string table in Tables)
             {
                 foreach(string column in dbAccessor.GetColumns(table))
                 {
-                    if (!ColumnTableMapping.ContainsKey(column))
+                    if (!columnTableMapping.ContainsKey(column))
                     {
-                        ColumnTableMapping.Add(column, new List<string>());
+                        columnTableMapping.Add(column, new List<string>());
                     }
-                    ColumnTableMapping[column].Add(table);
+                    columnTableMapping[column].Add(table);
                 }
             }
         }
@@ -128,6 +116,18 @@ namespace dbn
             if (!String.IsNullOrEmpty(currentTable))
             {
                 Results = dbAccessor.FetchMatchingRowsFromTable(currentTable, criteria);
+            }
+        }
+
+        public List<string> getTableNamesWhereColumnPresent(string columnName)
+        {
+            if (!String.IsNullOrEmpty(columnName))
+            {
+                return columnTableMapping[columnName];
+            }
+            else
+            {
+                return new List<string>();
             }
         }
 

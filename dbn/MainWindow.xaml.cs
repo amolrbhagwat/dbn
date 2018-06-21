@@ -102,7 +102,7 @@ namespace dbn
             }
 
             string selectedColumn = dataGrid.SelectedCells[0].Column.Header.ToString();
-            List<string> tablesWhereColumnPresent = ((MainViewModel)this.DataContext).ColumnTableMapping[selectedColumn];
+            List<string> tablesWhereColumnPresent = ((MainViewModel)this.DataContext).getTableNamesWhereColumnPresent(selectedColumn);
 
             ContextMenu contextMenu = ResultsDataGrid.ContextMenu;
 
