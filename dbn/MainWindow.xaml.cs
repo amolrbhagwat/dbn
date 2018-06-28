@@ -104,7 +104,7 @@ namespace dbn
             string selectedColumn = dataGrid.SelectedCells[0].Column.Header.ToString();
             List<string> tablesWhereColumnPresent = ((MainViewModel)this.DataContext).getTableNamesWhereColumnPresent(selectedColumn);
 
-            ContextMenu contextMenu = ResultsDataGrid.ContextMenu;
+            ContextMenu contextMenu = (ContextMenu) ResultsDataGrid.Resources["CtxMenu"];
 
             contextMenu.Items.Clear();
             foreach(string table in tablesWhereColumnPresent)
@@ -127,7 +127,7 @@ namespace dbn
             table = menuItem.Header.ToString();
 
             ContextMenu contextMenu = (ContextMenu)menuItem.Parent;
-            DataGrid dataGrid = (DataGrid)contextMenu.PlacementTarget as DataGrid;
+            DataGrid dataGrid = ResultsDataGrid;
 
             column = dataGrid.SelectedCells[0].Column.Header.ToString();
 

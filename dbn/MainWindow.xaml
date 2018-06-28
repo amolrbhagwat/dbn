@@ -91,11 +91,14 @@
                       
                     ItemsSource="{Binding Results}">
 
-                <DataGrid.ContextMenu>
-                    <ContextMenu x:Name="CtxMenu">
-                        <MenuItem Click="ContextMenuItem_Click"></MenuItem>
+                <DataGrid.Resources>
+                    <ContextMenu x:Key="CtxMenu" x:Shared="true">
+                        <MenuItem Click="ContextMenuItem_Click" />
                     </ContextMenu>
-                </DataGrid.ContextMenu>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="ContextMenu" Value="{StaticResource CtxMenu}"/>
+                    </Style>
+                </DataGrid.Resources>
             </DataGrid>
         </GroupBox>
     </Grid>
