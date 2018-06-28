@@ -77,6 +77,7 @@ namespace dbn
             GenerateColumnTableMapping();
 
             Columns?.Clear();
+            Results = null;
         }
 
         private void GenerateColumnTableMapping()
