@@ -40,12 +40,8 @@
                 Tables
             </GroupBox.Header>
             <DockPanel>
-                <ListBox Name="TablesListBox" Grid.Column="1" Grid.RowSpan="2" Height="Auto" BorderThickness="0" ItemsSource="{Binding Tables}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <EventSetter Event="Selected" Handler="TablesListBoxItem_Selected" />
-                        </Style>
-                    </ListBox.ItemContainerStyle>
+                <ListBox Name="TablesListBox" Grid.Column="1" Grid.RowSpan="2" Height="Auto" BorderThickness="0"
+                         ItemsSource="{Binding Tables}" SelectedValue="{Binding CurrentTable}" >
                 </ListBox>
             </DockPanel>
         </GroupBox>

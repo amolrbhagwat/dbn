@@ -31,7 +31,6 @@ namespace dbn
             }
         }
 
-        private string currentTable;
         private ObservableCollection<string> columns;
         public ObservableCollection<string> Columns
         {
@@ -57,6 +56,20 @@ namespace dbn
             {
                 results = value;
                 RaisePropertyChanged("Results");
+            }
+        }
+
+        private string currentTable;
+        public string CurrentTable {
+            get
+            {
+                return currentTable;
+            }
+            set
+            {
+                currentTable = value;
+                RaisePropertyChanged("CurrentTable");
+                UpdateColumnNames();
             }
         }
 
@@ -97,28 +110,27 @@ namespace dbn
             }
         }
 
-        public void SelectTable(string table)
+        public void UpdateColumnNames()
         {
-            if (!String.IsNullOrEmpty(table))
+            if (!String.IsNullOrEmpty(CurrentTable))
             {
-                Columns = new ObservableCollection<string>(dbAccessor.GetColumns(table) as List<string>);
-                currentTable = table;
+                Columns = new ObservableCollection<string>(dbAccessor.GetColumns(CurrentTable) as List<string>);
             }
         }
 
         public void SelectRows()
         {
-            if (!String.IsNullOrEmpty(currentTable))
+            if (!String.IsNullOrEmpty(CurrentTable))
             {
-                Results = dbAccessor.FetchAllRowsFromTable(currentTable);
+                Results = dbAccessor.FetchAllRowsFromTable(CurrentTable);
             }
         }
 
         public void SelectRowsMatching(Dictionary<string, string> criteria)
         {
-            if (!String.IsNullOrEmpty(currentTable))
+            if (!String.IsNullOrEmpty(CurrentTable))
             {
-                Results = dbAccessor.FetchMatchingRowsFromTable(currentTable, criteria);
+                Results = dbAccessor.FetchMatchingRowsFromTable(CurrentTable, criteria);
             }
         }
 

@@ -34,13 +34,6 @@ namespace dbn
             ((MainViewModel)this.DataContext).ConnectToDb(dbConnectionInfo);
         }
 
-        private void TablesListBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            ListBoxItem listBoxItem = (ListBoxItem)sender;
-
-            ((MainViewModel)this.DataContext).SelectTable(listBoxItem.DataContext.ToString());
-        }
-
         private void FetchButton_Clicked(object sender, RoutedEventArgs e)
         {
             Dictionary<string, string> columnValuePairs = new Dictionary<string, string>();
@@ -140,7 +133,7 @@ namespace dbn
             Dictionary<string, string> columnValuePairs = new Dictionary<string, string>();
             columnValuePairs.Add(column, value);
 
-            ((MainViewModel)this.DataContext).SelectTable(table);
+            ((MainViewModel)this.DataContext).CurrentTable = table;
             ((MainViewModel)this.DataContext).SelectRowsMatching(columnValuePairs);
         }
     }
