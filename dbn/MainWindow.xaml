@@ -53,7 +53,7 @@
                     Fields
                 </GroupBox.Header>
                 <DockPanel>
-                    <ListBox Name="ColumnsListBox" HorizontalContentAlignment="Stretch" BorderThickness="0" ItemsSource="{Binding Columns}">
+                    <ListBox Name="ColumnsListBox" HorizontalContentAlignment="Stretch" BorderThickness="0" VirtualizingPanel.IsVirtualizing="False" ItemsSource="{Binding Columns}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
